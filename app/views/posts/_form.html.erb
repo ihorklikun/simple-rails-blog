@@ -1,19 +1,22 @@
-<%= form_for @post  do |f| %>
-  <div class="form-group">
-    <%= f.label :title%>
-    <%= f.text_field :title%>
-  </div>
-  <div class="form-group">
-    <%= f.label :author%>
-    <%= f.text_field :author%>
-  </div>
-  <div class="form-group">
-    <%= f.label :text%>
-    <%= f.text_area :text%>
-  </div>
-  <div class="form-group">
-    <%= f.label :category_id%>
-    <%= f.text_field :category_id%>
-  </div>
-  <%= f.submit%>
+<%= form_for @post do |f| %>
+<div class="form-group">
+  <%= f.label :title%>
+  <%= f.text_field :title,{class: 'form-control',style: ''}%>
+</div>
+<div class="form-group">
+  <%= f.label :author%>
+  <%= f.text_field :author,{class: 'form-control',style: ''}%>
+</div>
+<div class="form-group">
+  <%= f.label :text%>
+  <%= f.text_area :text,{class: 'form-control',style: ''}%>
+</div>
+<div class="form-group">
+  <%= f.label :category_id%>
+  <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] },{},{class: 'form-control',style: 'width:20%'}%>
+</div>
+<div class="">
+  <%= f.submit 'Add comment', class: 'btn btn-primary'%>
+</div>
+
 <% end %>

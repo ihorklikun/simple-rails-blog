@@ -38,9 +38,8 @@
             <%= f.submit 'Add comment', class: 'btn btn-primary'%>
           </div>
         <% else %>
-
         <div class="container">
-          <p>You need to LogIn to add comments</p>
+          <p>You need to Log In to add comments</p>
         </div>
         <% end %>
       <% end %>
@@ -61,8 +60,12 @@
             </div>
 
             <div class="container">
-              <%if comment.id%>
-                <%= link_to 'Delete Comment', post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete %><br>
+              <%if @account%>
+                <%if @account.id == comment.account_id%>
+                  <%if comment.id%>
+                    <%= link_to 'Delete Comment', post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete %><br>
+                  <% end %>
+                <% end %>
               <% end %>
             </div>
 

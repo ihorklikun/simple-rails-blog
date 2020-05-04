@@ -29,12 +29,20 @@
         <div class="container">
           <h4>Add comment</h4>
         </div>
+
+        <% if @account %>
+          <div class="container">
+            <p>Comment<br><%= f.text_area :text, style:'width:100%;height:200px'%></p>
+          </div>
+          <div class="container">
+            <%= f.submit 'Add comment', class: 'btn btn-primary'%>
+          </div>
+        <% else %>
+
         <div class="container">
-          <p>Comment<br><%= f.text_area :text, style:'width:100%;height:200px'%></p>
+          <p>You need to LogIn to add comments</p>
         </div>
-        <div class="container">
-          <%= f.submit 'Add comment', class: 'btn btn-primary'%>
-        </div>
+        <% end %>
       <% end %>
     </div>
 

@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-
+    @account = current_account
     @categories = Category.all
   end
 

@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-
+    @account = current_account
     @categories = Category.all
   end
 
@@ -21,6 +21,7 @@ class PostsController < ApplicationController
     @categories = Category.all
 
     @post = Post.new(post_params)
+    @post.account_id = current_account.id
     @post.save
     redirect_to @post
   end

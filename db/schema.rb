@@ -10,18 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_134918) do
+ActiveRecord::Schema.define(version: 2020_04_29_194827) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "username"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_accounts_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "author"
+    t.integer "account_id", null: false
     t.text "text"
     t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_comments_on_account_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
@@ -30,11 +46,15 @@ ActiveRecord::Schema.define(version: 2020_04_27_134918) do
     t.string "author"
     t.text "text"
     t.integer "category_id", null: false
+    t.integer "account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["category_id"], name: "index_posts_on_category_id"
   end
 
+  add_foreign_key "comments", "accounts"
   add_foreign_key "comments", "posts"
+  add_foreign_key "posts", "accounts"
   add_foreign_key "posts", "categories"
 end

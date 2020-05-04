@@ -3,7 +3,7 @@
 
   <div class="row flex-nowrap justify_content_between align-items-center">
     <div class="col-4">
-
+      <p style="margin: auto;font-style: italic;"> <%= current_account.full_name%></p>
     </div>
 
     <div class="col-4 text-center " style="font-size:32px">
@@ -14,12 +14,22 @@
 
     <!--<div class="col-4 d-flex justify_content_end">
       <%= link_to '<button type="button" class="btn btn-light">New Post</button>'.html_safe, new_post_path %>
-    </div>
--->
-    <div class="col-4 d-flex justify-content-end align-items-center">
+    </div> -->
+
+    <!--<div class="col-4 d-flex justify-content-end align-items-center">
           <%= link_to '<button type="button" class="btn btn-light">New Post</button>'.html_safe, new_post_path %>
         </div>
-    </div>
+    </div>-->
 
+
+    <div class="float-right col-4 d-flex justify-content-end">
+      <% if account_signed_in?%>
+        <%= link_to '<button type="button" style="margin-right:10px;" class="btn btn-light">New Post</button>'.html_safe, new_post_path %>
+        <%= link_to "Sign Out", destroy_account_session_path, method: :delete, class: "btn btn-primary"  %>
+      <% else %>
+        <%= link_to "Log In", new_account_session_path,class: "btn btn-outline-primary", style: "margin-right:10px;"  %>
+        <%= link_to "Sign Up", new_account_registration_path,class: "btn btn-primary"  %>
+      <% end %>
+    </div>
 </header>
 <%= render partial: 'layouts/navbar' %>

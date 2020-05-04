@@ -22,8 +22,4 @@ test:
 
 production:
   <<: *default
-<<<<<<< HEAD
   database: <%= ENV['DATABASE_URL']%>
-=======
-  database: <%= ENV.['DATABASE_URL']%>
->>>>>>> 49b7584c1bbdf1c4c0cae235f9636d46f04b6ca4

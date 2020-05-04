@@ -9,12 +9,11 @@
             <strong class="d-inline-block mb-2 text-primary"><%= post.category.name %></strong>
             <h3 class="mb-0"><%= link_to post.title, post,{:style=>'color:#000000;'} %></h3>
             <div class="row">
-              <div class="col-4 text-muted">Author:  <%= post.account.email %></div>
+              <div class="col-4 text-muted">Author:  <%= post.account.full_name %></div>
               <div class="col-4 text-muted">Comments: <%= post.comments.count %></div>
               <div class="col-4 text-muted"><%= post.created_at.strftime("%d-%m-%Y") %></div>
             </div>
-            <p style="margin-top:10px" class="card-text mb-auto"><%= post.text %></p>
-
+            <!--<p style="margin-top:10px" class="card-text mb-auto"><%= post.text %></p>-->
           </div>
         </div>
       </div>

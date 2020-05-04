@@ -3,9 +3,9 @@
     <h1>Post "<%= @post.title %>"</h1>
   </div>
   <div class="container text-muted">
-    <p><%= @post.created_at.strftime("%Y-%m-%d") %>
+    <p><%= @post.created_at.strftime("%d-%m-%Y") %>
       by
-      <%= @post.account.email %></p>
+      <%= @post.account.full_name %></p>
   </div>
   <div class="container" style="blog-header">
     <p><%= @post.text %></p>
@@ -54,7 +54,7 @@
           <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="p-4 d-flex flex-column position-static">
               <div class="row">
-                <div class="col-4 mb-1 text-muted">Author:<%= comment.account.email %></div>
+                <div class="col-4 mb-1 text-muted">Author:<%= comment.account.full_name %></div>
               </div>
               <p class="card-text mb-auto"><%= comment.text %></p>
             </div>

@@ -1,25 +1,18 @@
-<div class="">
-  <div class="row mb-2">
+<div class="row mb-2">
 
-    <% @posts.each do |post| %>
+  <% @posts.each do |post| %>
 
-      <div class="col-md-6 ">
-        <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary"><%= post.category.name %></strong>
-            <h3 class="mb-0"><%= link_to post.title, post,{:style=>'color:#000000;'} %></h3>
-            <div class="row">
-              <div class="col-4 text-muted">Author:  <%= post.account.full_name %></div>
-              <div class="col-4 text-muted">Comments: <%= post.comments.count %></div>
-              <div class="col-4 text-muted"><%= post.created_at.strftime("%d-%m-%Y") %></div>
-            </div>
-            <!--<p style="margin-top:10px" class="card-text mb-auto"><%= post.text %></p>-->
-          </div>
-        </div>
-      </div>
-
+    <div class="col-md-6 ">
+      <% if account_signed_in?%>
+        <% if post.account_id == current_account.id%>
+          <%= render partial: 'layouts/post_colored_card', locals: {post: post} %>
+        <% else %>
+          <%= render partial: 'layouts/post_card', locals: {post: post} %>
+        <% end %>
+      <% else %>
+        <%= render partial: 'layouts/post_card', locals: {post: post} %>
       <% end %>
-
-  </div>
+      </div>
+  <% end %>
 
 </div>
